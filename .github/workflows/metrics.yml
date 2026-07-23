@@ -14,16 +14,45 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - name: Metrics embed
+        uses: lowlighter/metrics@v3.34
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           filename: github-metrics.svg
           
-          # Base stats (commit history, repos, contributions)
-          base: header, activity, community, repositories
+          # 🗃️ Base Activity & Profile Data
+          base: header, activity, community, repositories, metadata
           
-          # Lines of code plugin
+          # 👨‍💻 Lines of Code Changed
           plugin_lines: yes
           plugin_lines_history_limit: 1
           plugin_lines_repositories_limit: 4
           plugin_lines_sections: base
+          
+          # 🤹 Languages Used
+          plugin_languages: yes
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used
+          plugin_languages_details: bytes-size, percentage
+          
+          # 📅 3D Isometric Calendar
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          
+          # 🕒 Coding Habits & Activity Times
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          
+          # 🏷️ Top Repository Topics
+          plugin_topics: yes
+          plugin_topics_sort: stars
+          plugin_topics_limit: 15
+          
+          # 🏆 GitHub Achievements & Badges
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_limit: 6
