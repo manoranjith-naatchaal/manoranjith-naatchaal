@@ -1,12 +1,13 @@
 name: GitHub Metrics
+
 on:
-  # 📅 Runs automatically every day at midnight
+  # 📅 Runs automatically every day at midnight UTC
   schedule:
     - cron: "0 0 * * *"
-  # 💡 Allows manual triggering anytime from the Actions tab
+  # 💡 Allows manual execution anytime from the Actions tab
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
 
 jobs:
   github-metrics:
@@ -17,42 +18,45 @@ jobs:
       - name: Metrics embed
         uses: lowlighter/metrics@v3.34
         with:
+          # 🔑 GitHub token stored in repository secrets
           token: ${{ secrets.METRICS_TOKEN }}
+          
+          # 📄 Output file saved directly to your repository root
           filename: github-metrics.svg
           
-          # 🗃️ Base Activity & Profile Data
+          # 🗃️ Base profile data (header, recent activity, community, repo counts)
           base: header, activity, community, repositories, metadata
           
-          # 👨‍💻 Lines of Code Changed
+          # 👨‍💻 Lines of Code Changed (added/deleted)
           plugin_lines: yes
           plugin_lines_history_limit: 1
           plugin_lines_repositories_limit: 4
           plugin_lines_sections: base
           
-          # 🤹 Languages Used
+          # 🤹 Most used programming languages
           plugin_languages: yes
           plugin_languages_colors: github
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
           plugin_languages_details: bytes-size, percentage
           
-          # 📅 3D Isometric Calendar
+          # 📅 3D Isometric Commit Calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
           
-          # 🕒 Coding Habits & Activity Times
+          # 🕒 Active Coding Hours & Commit Habits
           plugin_habits: yes
           plugin_habits_from: 200
           plugin_habits_days: 14
           plugin_habits_facts: yes
           plugin_habits_charts: yes
           
-          # 🏷️ Top Repository Topics
+          # 🏷️ Repository Tech Topics
           plugin_topics: yes
           plugin_topics_sort: stars
           plugin_topics_limit: 15
           
-          # 🏆 GitHub Achievements & Badges
+          # 🏆 Developer Achievements & Badges
           plugin_achievements: yes
           plugin_achievements_display: compact
           plugin_achievements_limit: 6
