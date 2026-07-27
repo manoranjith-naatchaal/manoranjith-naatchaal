@@ -56,7 +56,5 @@ jobs:
           plugin_topics_sort: stars
           plugin_topics_limit: 15
           
-          # 🏆 Developer Achievements & Badges
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_limit: 6
+          # 🏆 Developer Achievements & Badges (Disabled temporarily due to GitHub API changes)
+          plugin_achievements: no
