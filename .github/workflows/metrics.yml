@@ -1,10 +1,8 @@
 name: GitHub Metrics
 
 on:
-  # 📅 Runs automatically every day at midnight UTC
   schedule:
     - cron: "0 0 * * *"
-  # 💡 Allows manual execution anytime from the Actions tab
   workflow_dispatch:
   push:
     branches: ["main", "master"]
@@ -18,16 +16,13 @@ jobs:
       - name: Metrics embed
         uses: lowlighter/metrics@v3.34
         with:
-          # 🔑 GitHub token stored in repository secrets
           token: ${{ secrets.METRICS_TOKEN }}
-          
-          # 📄 Output file saved directly to your repository root
           filename: github-metrics.svg
           
-          # 🗃️ Base profile data (header, recent activity, community, repo counts)
+          # 🗃️ Base profile data
           base: header, activity, community, repositories, metadata
           
-          # 👨‍💻 Lines of Code Changed (added/deleted)
+          # 👨‍💻 Lines of Code Changed
           plugin_lines: yes
           plugin_lines_history_limit: 1
           plugin_lines_repositories_limit: 4
@@ -44,17 +39,11 @@ jobs:
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
           
-          # 🕒 Active Coding Hours & Commit Habits
-          plugin_habits: yes
-          plugin_habits_from: 200
-          plugin_habits_days: 14
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
-          
           # 🏷️ Repository Tech Topics
           plugin_topics: yes
           plugin_topics_sort: stars
           plugin_topics_limit: 15
           
-          # 🏆 Developer Achievements & Badges (Disabled temporarily due to GitHub API changes)
+          # DISABLED DUE TO GITHUB API BREAKING CHANGES:
+          plugin_habits: no
           plugin_achievements: no
